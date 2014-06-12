@@ -138,8 +138,12 @@ void ofxSprite::draw(ofVec2f v) {
 
 ofImage& ofxSprite::getImageAtFrame(int frame) {
     assert(totalFrames);
-    if (frame<=totalFrames) return assets[filenames[frame]];
-    else return assets[filenames[0]];
+    //borg: out of bounds issue fix here
+    if (frame<totalFrames){
+        return assets[filenames[frame]];
+    }else{
+        return assets[filenames[0]];
+    } 
 }
 
 ofImage& ofxSprite::getCurrentImage() {
